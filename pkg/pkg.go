@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/fatih/color"
+	"github.com/tidwall/gjson"
 )
 
 var Last *Storage
@@ -52,6 +53,10 @@ func JSON(obj map[string]interface{}) string {
 		panic(err)
 	}
 	return string(jsonStr)
+}
+
+func Value(path string) gjson.Result {
+	return gjson.Get(Last.ResponseBody, path)
 }
 
 func Send(method string, urlString, body string, params ...string) {

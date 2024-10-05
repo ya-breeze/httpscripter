@@ -22,8 +22,8 @@ func main() {
 	)
 
 	if Succeed(Last.Response.StatusCode) {
-		fmt.Println("TADA")
+		fmt.Println("TADA", Value("id").String())
 	} else {
-		fmt.Println("Oops")
+		fmt.Println("Oops", Last.Response.StatusCode)
 	}
 }

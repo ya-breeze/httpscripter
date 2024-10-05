@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"net/http/httptest"
 
-	"github.com/tidwall/gjson"
 	"github.com/ya-breeze/httpscripter/pkg"
 
 	. "github.com/onsi/ginkgo/v2"
@@ -52,13 +51,10 @@ var _ = Describe("Package", func() {
 			Expect(pkg.Succeed(pkg.Last.Response.StatusCode)).To(BeTrue())
 			Expect(pkg.Failed(pkg.Last.Response.StatusCode)).To(BeFalse())
 
-			id := gjson.Get(pkg.Last.ResponseBody, "id")
-			GinkgoWriter.Printf("id: %d\n", id.Int())
-			status := gjson.Get(pkg.Last.ResponseBody, "status")
-			if status.String() == "complete" {
+			if pkg.Value("status").String() == "complete" {
 				break
 			}
-			Expect(id.Int()).To(BeNumerically(">", 0))
+			Expect(pkg.Value("id").Int()).To(BeNumerically(">", 0))
 		}
 	})
 
