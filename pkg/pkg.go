@@ -40,7 +40,7 @@ func POST(urlString, body string, params ...string) {
 }
 
 func DELETE(urlString string, params ...string) {
-	Send("POST", urlString, "", params...)
+	Send("DELETE", urlString, "", params...)
 }
 
 func PATCH(urlString, body string, params ...string) {
