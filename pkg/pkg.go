@@ -39,6 +39,18 @@ func POST(urlString, body string, params ...string) {
 	Send("POST", urlString, body, params...)
 }
 
+func DELETE(urlString string, params ...string) {
+	Send("POST", urlString, "", params...)
+}
+
+func PATCH(urlString, body string, params ...string) {
+	Send("PATCH", urlString, body, params...)
+}
+
+func PUT(urlString, body string, params ...string) {
+	Send("PUT", urlString, body, params...)
+}
+
 func Succeed(code int) bool {
 	return code >= http.StatusOK && code < http.StatusMultipleChoices
 }
